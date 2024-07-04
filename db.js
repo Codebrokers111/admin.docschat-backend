@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
 
-const mongoUri = "mongodb://localhost:27017/Docster"
+const mongoUri = process.env.REACT_APP_MDB
+
 
 const connectToMongo = async () =>{
     try{
