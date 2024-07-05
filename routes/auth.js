@@ -7,6 +7,7 @@ const Admin = require('../models/Admin')
 const User = require('../models/User')
 const Acess = require('../models/Acess')
 const MoreTokens = require('../models/MoreTokens')
+const Like = require('../models/Like')
 
 const JWT_SECRET = 'welcometodocster'
 
@@ -133,6 +134,21 @@ router.get('/getmoretokens',async (req,res)=>{
         }
     }catch(err){
         console.error(err.message)
+        res.status(500).send("Some Error Occured")
+    }
+})
+
+router.get('/likes',async (req,res)=>{
+    try{
+        const data = await Like.find({})
+        success=true
+        if(data){
+            res.json({success:success,count:data})
+        }else{
+            success=false
+            res.status(400).json({success,msg:"Like not found"})
+        }
+    }catch(err){
         res.status(500).send("Some Error Occured")
     }
 })
